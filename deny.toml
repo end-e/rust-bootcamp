@@ -63,10 +63,20 @@ feature-depth = 1
 # More documentation for the advisories section can be found here:
 # https://embarkstudios.github.io/cargo-deny/checks/advisories/cfg.html
 [advisories]
-# The path where the advisory databases are cloned/fetched into
-#db-path = "$CARGO_HOME/advisory-dbs"
+# The path where the advisory database is cloned/fetched into
+db-path = "~/.cargo/advisory-db"
 # The url(s) of the advisory databases to use
-#db-urls = ["https://github.com/rustsec/advisory-db"]
+db-urls = ["https://github.com/rustsec/advisory-db"]
+# The lint level for security vulnerabilities
+vulnerability = "deny"
+# The lint level for unmaintained crates
+unmaintained = "warn"
+# The lint level for crates that have been yanked from their source registry
+yanked = "warn"
+# The lint level for crates with security notices. Note that as of
+# 2019-12-17 there are no security notice advisories in
+# https://github.com/rustsec/advisory-db
+notice = "warn"
 # A list of advisory IDs to ignore. Note that ignored advisories will still
 # output a note when they are encountered.
 ignore = [
@@ -91,7 +101,9 @@ ignore = [
 allow = [
     "MIT",
     "Apache-2.0",
-    "Unicode-DFS-2016"
+    "Unicode-DFS-2016",
+    "BSD-2-Clause",
+    "BSD-3-Clause",
     #"Apache-2.0 WITH LLVM-exception",
 ]
 # The confidence threshold for detecting a license from license text.
